@@ -26,7 +26,7 @@ def finalresult():
             # This is the user query
             q = mp.parse(request.form['QA'])
             # Actual searcher, prints top 10 hits
-            with ix.searcher(weighting=scoring.BM25F()) as s:
+            with ix.searcher(weighting=scoring.BM25F(B=1,K1=2)) as s:
                 results = s.search(q, limit = 5)
                 for i in range(5):
                     print(results[i]['question'], str(results[i].score), results[i]['answer'])
